@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BONB</string>
+    <string name="truetext">TRUE</string>
+    <string name="falsetext">FALSE</string>
+    <string name="questiontext">ADDITIONAL INFORMATION</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_exit">Exit</string>
+
+
+</resources>
