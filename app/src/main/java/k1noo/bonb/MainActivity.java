@@ -1,11 +1,11 @@
 package k1noo.bonb;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,18 +13,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.server.converter.StringToIntConverter;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button trueButton, falseButton, addButton;
-    TextView QuestionView;
-    EditText editTopic, editQuestion;
+    Button trueButton, falseButton, addButton, readButton, clearButton;
+    TextView FactView;
+    EditText editFact, editVeracity;
     DBHelper dbHelper;
 
     @Override
@@ -34,10 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
         trueButton = (Button) findViewById(R.id.true_button);
         falseButton = (Button) findViewById(R.id.false_button);
-        QuestionView = (TextView) findViewById(R.id.Question);
+
         addButton = (Button) findViewById(R.id.add_button);
-        editQuestion = (EditText) findViewById(R.id.editQuestion);
-        editTopic = (EditText) findViewById(R.id.editTopic);
+        readButton = (Button) findViewById(R.id.readButton);
+        clearButton = (Button) findViewById(R.id.clearButton);
+
+        FactView = (TextView) findViewById(R.id.Fact);
+
+        editVeracity = (EditText) findViewById(R.id.editVeracity);
+        editFact = (EditText) findViewById(R.id.editFact);
 
         dbHelper = new DBHelper(this);
 
@@ -45,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String topic = editTopic.getText().toString();
-                String question = editQuestion.getText().toString();
+                String fact = editFact.getText().toString();
+                String veracity = editVeracity.getText().toString();
 
                 SQLiteDatabase database = dbHelper.getWritableDatabase();
 
@@ -54,32 +59,59 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (view.getId()) {
                     case R.id.true_button:
-                        QuestionView.setText(R.string.truetext);
-                        Toast toastNotifTrue = Toast.makeText(MainActivity.this, "TRUE BUTTON PRESSED", Toast.LENGTH_SHORT);
-                        toastNotifTrue.show();
+                        FactView.setText(R.string.truetext);
+                        Log.d("mLog", "TRUE PRESSED");
                         break;
                     case R.id.false_button:
-                        QuestionView.setText(R.string.falsetext);
+                        FactView.setText(R.string.falsetext);
+                        Log.d("mLog", "FALSE PRESSED");
                         break;
                     case R.id.add_button:
-                        contentValues.put(DBHelper.QUESTION, question);
-                        contentValues.put(DBHelper.ANSWER, topic);
+                        Log.d("mLog", "ADD PRESSED");
+                        contentValues.put(DBHelper.FACT, fact);
+                        contentValues.put(DBHelper.VERACITY, veracity);
 
-                        database.insert(DBHelper.TABLE_QUESTIONS, null, contentValues);
+                        database.insert(DBHelper.TABLE_FACTS, null, contentValues);
+                        break;
+                    case R.id.readButton:
+                        Log.d("mLog", "READ PRESSED");
+
+                        Cursor cursor = database.query(DBHelper.TABLE_FACTS, null, null, null, null, null, null);
+
+                        if (cursor.moveToFirst()) {
+                            int idIndex = cursor.getColumnIndex(DBHelper.FACT_ID);
+                            int factID = cursor.getColumnIndex(DBHelper.FACT);
+                            int veracityID = cursor.getColumnIndex(DBHelper.VERACITY);
+                            while (cursor.moveToNext()) {
+                                Log.d("mLog", "ID = " + cursor.getInt(idIndex) + " Fact: " + cursor.getString(factID)
+                                + " Veracity: " + cursor.getString(veracityID));
+                            }
+                        } else {
+                            Log.d("mLog", "0 items");
+                        }
+                        cursor.close();
+                        break;
+                    case R.id.clearButton:
+                        Log.d("mLog", "CLEAR PRESSED");
+                        database.delete(DBHelper.TABLE_FACTS, null, null);
                         break;
                 }
+                dbHelper.close();
             }
         };
 
-        QuestionView.setOnClickListener(new View.OnClickListener() {
+        FactView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                QuestionView.setText(R.string.questiontext);
+                FactView.setText(R.string.questiontext);
             }
 
         });
 
         addButton.setOnClickListener(onClickAnswerListener);
+        readButton.setOnClickListener(onClickAnswerListener);
+        clearButton.setOnClickListener(onClickAnswerListener);
+
         trueButton.setOnClickListener(onClickAnswerListener);
         falseButton.setOnClickListener(onClickAnswerListener);
 
