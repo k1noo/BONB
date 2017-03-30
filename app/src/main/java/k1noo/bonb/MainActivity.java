@@ -1,6 +1,7 @@
 package k1noo.bonb;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -20,83 +21,90 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.HashSet;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button trueButton, falseButton, addButton, readButton, clearButton;
-    TextView FactView;
-    EditText editFact, editVeracity;
+    Button trueButton, falseButton, playButton, restartButton;
+    TextView FactView, welcomeText, scoreField;
     DBHelper dbHelper;
+    SQLiteDatabase database;
+    Cursor cursor;
+    int scoreCounter;
+    String factVeracity;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
         trueButton = (Button) findViewById(R.id.true_button);
         falseButton = (Button) findViewById(R.id.false_button);
-
-        addButton = (Button) findViewById(R.id.add_button);
-        readButton = (Button) findViewById(R.id.readButton);
-        clearButton = (Button) findViewById(R.id.clearButton);
+        playButton = (Button) findViewById(R.id.playButton);
+        restartButton = (Button) findViewById(R.id.restartButton);
 
         FactView = (TextView) findViewById(R.id.Fact);
-
-        editVeracity = (EditText) findViewById(R.id.editVeracity);
-        editFact = (EditText) findViewById(R.id.editFact);
+        welcomeText = (TextView) findViewById(R.id.welcomeText);
+        scoreField = (TextView) findViewById(R.id.scoreField);
 
         dbHelper = new DBHelper(this);
+        database = dbHelper.getReadableDatabase();
+        cursor = database.query(DBHelper.TABLE_FACTS, null, null, null, null, null, null);
+        if (!cursor.moveToFirst()) {
+            FactView.setText("EMPTY DATABASE!");
+        }
+
+        scoreCounter = 0;
+
+        factVeracity = "false";
+
 
         View.OnClickListener onClickAnswerListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String fact = editFact.getText().toString();
-                String veracity = editVeracity.getText().toString();
-
-                SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-                ContentValues contentValues = new ContentValues();
-
                 switch (view.getId()) {
+                    case R.id.playButton:
+
+                        playButton.setVisibility(View.INVISIBLE);
+                        welcomeText.setVisibility(View.INVISIBLE);
+                        restartButton.setVisibility(View.INVISIBLE);
+                        trueButton.setVisibility(View.VISIBLE);
+                        falseButton.setVisibility(View.VISIBLE);
+                        FactView.setVisibility(View.VISIBLE);
+                        scoreField.setVisibility(View.VISIBLE);
+
+                        break;
                     case R.id.true_button:
-                        FactView.setText(R.string.truetext);
+                        if (factVeracity.equals("true")) {
+                            Toast.makeText(MainActivity.this, "RIGHT!", Toast.LENGTH_SHORT).show();
+                            ++scoreCounter;
+                        } else {
+                            Toast.makeText(MainActivity.this, "WRONG!", Toast.LENGTH_SHORT).show();
+                            --scoreCounter;
+                        }
                         Log.d("mLog", "TRUE PRESSED");
                         break;
                     case R.id.false_button:
-                        FactView.setText(R.string.falsetext);
+                        if (factVeracity.equals("false")) {
+                            Toast.makeText(MainActivity.this, "RIGHT!", Toast.LENGTH_SHORT).show();
+                            ++scoreCounter;
+                        } else {
+                            Toast.makeText(MainActivity.this, "WRONG!", Toast.LENGTH_SHORT).show();
+                            --scoreCounter;
+                        }
                         Log.d("mLog", "FALSE PRESSED");
                         break;
-                    case R.id.add_button:
-                        Log.d("mLog", "ADD PRESSED");
-                        contentValues.put(DBHelper.FACT, fact);
-                        contentValues.put(DBHelper.VERACITY, veracity);
-
-                        database.insert(DBHelper.TABLE_FACTS, null, contentValues);
-                        break;
-                    case R.id.readButton:
-                        Log.d("mLog", "READ PRESSED");
-
-                        Cursor cursor = database.query(DBHelper.TABLE_FACTS, null, null, null, null, null, null);
-
-                        if (cursor.moveToFirst()) {
-                            int idIndex = cursor.getColumnIndex(DBHelper.FACT_ID);
-                            int factID = cursor.getColumnIndex(DBHelper.FACT);
-                            int veracityID = cursor.getColumnIndex(DBHelper.VERACITY);
-                            while (cursor.moveToNext()) {
-                                Log.d("mLog", "ID = " + cursor.getInt(idIndex) + " Fact: " + cursor.getString(factID)
-                                + " Veracity: " + cursor.getString(veracityID));
-                            }
-                        } else {
-                            Log.d("mLog", "0 items");
-                        }
-                        cursor.close();
-                        break;
-                    case R.id.clearButton:
-                        Log.d("mLog", "CLEAR PRESSED");
-                        database.delete(DBHelper.TABLE_FACTS, null, null);
+                    case R.id.restartButton:
+                        restart();
                         break;
                 }
-                dbHelper.close();
+                int factID = cursor.getColumnIndex(DBHelper.FACT);
+
+                factVeracity = showNextFact(cursor, factID, FactView);
+                if (!cursor.moveToNext()) {
+                    finishGame();
+                }
+                scoreField.setText("SCORE: " + scoreCounter);
             }
         };
 
@@ -108,16 +116,37 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        addButton.setOnClickListener(onClickAnswerListener);
-        readButton.setOnClickListener(onClickAnswerListener);
-        clearButton.setOnClickListener(onClickAnswerListener);
 
         trueButton.setOnClickListener(onClickAnswerListener);
         falseButton.setOnClickListener(onClickAnswerListener);
+        playButton.setOnClickListener(onClickAnswerListener);
+        welcomeText.setOnClickListener(onClickAnswerListener);
+        restartButton.setOnClickListener(onClickAnswerListener);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    public String showNextFact(Cursor cursor, int factID, TextView textView) {
+        Log.d("mLog", "ID = " + cursor.getInt(cursor.getColumnIndex(DBHelper.FACT_ID)) + " Fact: " + cursor.getString(factID)
+                + " Veracity: " + cursor.getString(cursor.getColumnIndex(DBHelper.VERACITY)));
+        textView.setText(cursor.getString(cursor.getColumnIndex(DBHelper.FACT)));
+        return cursor.getString(cursor.getColumnIndex(DBHelper.VERACITY));
+
+    }
+
+    public void finishGame() {
+        scoreField.setVisibility(View.INVISIBLE);
+        falseButton.setVisibility(View.INVISIBLE);
+        trueButton.setVisibility(View.INVISIBLE);
+        FactView.setText("GAME ENDED, YOUR SCORE IS: " + scoreCounter);
+        restartButton.setVisibility(View.VISIBLE);
+    }
+
+    public void restart() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -136,6 +165,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_exit:
                 Toast.makeText(MainActivity.this, getString(R.string.action_exit), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_dbEdit:
+                Intent intent = new Intent(this, DatabaseScreen.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -173,5 +206,10 @@ public class MainActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
