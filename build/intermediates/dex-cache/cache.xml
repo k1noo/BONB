@@ -3,12 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.0_65ccf7e27feaeab70940e5a13548cf8789c29dec/classes.dex" />
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.0_46595a65fc4ed9f3abb696425707781318988bec/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -30,66 +30,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_cdb4bd863f03db2dfc4236ebe1705be0f331e415/classes.dex" />
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.0_7a08040fa94fa6d77058f5d1c4f6f9de336fa867/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.0/jars/classes.jar"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.1.0_41fab2fe187a631d3708957e8090d4a4560a92fb/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_ed619afa9b842ab33e3028e3cf1ec87f80f2e3e7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_ebdf9dec7b3d6f482535f54ea72492dc6078ddef/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/design/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.0_f75ef6e9641471a87852ac1b62a340f3c01af621/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.1.0_37486a036dc8646f52891541a0109e6f0f9bc20d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5c18f91bff7dbfd928e3ec97e11cbcde96b5c2c1">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c79563325d4108dff20e29a3f0d84e023d28b2b3/classes.dex" />
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.0_a589b0312dc5a9ac8102000e97994bac6900f0a9/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -99,24 +54,6 @@
         revision="25.0.2"
         sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
         <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.0_a2d61e207e462f0fbd5f6f241c5f4bc60b3e776c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.0_f2157b5956004133328dd2974809e8ce3e0f9ce6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6cf05021a5e60d79b13b1cce07ef35bffc300a21">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_691f38611622806c57184ebec4e448953e27b9ef/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -138,12 +75,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/jars/classes.jar"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_2c291b7a1660c3dae16f48c68ad5817a42addecc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.0_232e74b5fc210afd0702aff58102dd7c8b591020/classes.dex" />
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.0_0e1a0888fca8916b41280f16c81f7e5f530f75dc/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -153,6 +99,186 @@
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.0_5fdfb929a701ddff342321e2cc1448db91158654/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.0_65ccf7e27feaeab70940e5a13548cf8789c29dec/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.1.0_41fab2fe187a631d3708957e8090d4a4560a92fb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/design/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.0_abba52658e464c8e5645735a1d313e99c2774745/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.0_096e7aa8cba2ab78490b3583465a48f99ff6aa8b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.1.0_37486a036dc8646f52891541a0109e6f0f9bc20d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.0_f2157b5956004133328dd2974809e8ce3e0f9ce6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6cf05021a5e60d79b13b1cce07ef35bffc300a21">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_691f38611622806c57184ebec4e448953e27b9ef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.0_232e74b5fc210afd0702aff58102dd7c8b591020/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.0_2ed118fed7cccc6b494b899c807d96de1e9fd284/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/exploded-aar/com.android.support/design/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.0_f75ef6e9641471a87852ac1b62a340f3c01af621/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.1.0_07f4a5291d269635840441bcd2a9b735a275bfc3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7aaf0d0221a50c09b6204a5bd1a0c23b75f216e7">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_383288c361c09be2e24767bb4de1bbdf2a79affc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.0_3b198dca6bdcee0873b7b524221c773a6c787d80/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.0_c944bef0b55d66c760cb666a2d2198667d517e59/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bae728339b768b3ba231cf1bdcb984e36971589e">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9f60381fb14ff1540fcd290075fccf1d37e0ecd6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_f4fbbd6d58dd3e1692e7641493d0f873f12eecc3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5c18f91bff7dbfd928e3ec97e11cbcde96b5c2c1">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c79563325d4108dff20e29a3f0d84e023d28b2b3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.1.0_0fa090b44f660561b49749480111ba316f342d4f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.0_e3a894ac9aa4910a29c4091f683b41f3470595d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_efdf60fae3d211ea6081972171fbced34e0b3ac3/classes.dex" />
     </item>
     <item
         is-multidex="true"

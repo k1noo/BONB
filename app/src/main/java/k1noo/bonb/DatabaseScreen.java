@@ -58,10 +58,10 @@ public class DatabaseScreen extends AppCompatActivity {
                             int idIndex = cursor.getColumnIndex(DBHelper.FACT_ID);
                             int factID = cursor.getColumnIndex(DBHelper.FACT);
                             int veracityID = cursor.getColumnIndex(DBHelper.VERACITY);
-                            while (cursor.moveToNext()) {
+                            do {
                                 Log.d("mLog", "ID = " + cursor.getInt(idIndex) + " Fact: " + cursor.getString(factID)
                                         + " Veracity: " + cursor.getString(veracityID));
-                            }
+                            } while (cursor.moveToNext());
                         } else {
                             Log.d("mLog", "0 items");
                         }

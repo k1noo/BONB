@@ -72,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
                         falseButton.setVisibility(View.VISIBLE);
                         FactView.setVisibility(View.VISIBLE);
                         scoreField.setVisibility(View.VISIBLE);
+                        if (cursor != null) {
+                            if(!cursor.moveToFirst()) {
+                                finishGame();
+                            }
+                        }
 
                         break;
                     case R.id.true_button:
