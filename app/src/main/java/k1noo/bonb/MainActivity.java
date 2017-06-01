@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     SQLiteDatabase database;
     Cursor cursor;
     int scoreCounter;
+    boolean finishFlag;
     String factVeracity;
 
     @Override
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         scoreCounter = 0;
-
+        finishFlag = false;
         factVeracity = "false";
 
 
@@ -104,10 +105,11 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 int factID = cursor.getColumnIndex(DBHelper.FACT);
-
+                if(finishFlag) { finishGame(); return;}
                 factVeracity = showNextFact(cursor, factID, FactView);
+
                 if (!cursor.moveToNext()) {
-                    finishGame();
+                    finishFlag = true;
                 }
                 scoreField.setText("SCORE: " + scoreCounter);
             }
@@ -201,6 +203,17 @@ public class MainActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dbHelper = new DBHelper(this);
+        database = dbHelper.getReadableDatabase();
+        cursor = database.query(DBHelper.TABLE_FACTS, null, null, null, null, null, null);
+        if (!cursor.moveToFirst()) {
+            FactView.setText("EMPTY DATABASE!");
+        }
     }
 
     @Override

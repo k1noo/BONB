@@ -205,7 +205,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="7aaf0d0221a50c09b6204a5bd1a0c23b75f216e7">
+        sha1="344d66780ff4cb3ee663fa3416e28acb5bb1bd4c">
         <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_383288c361c09be2e24767bb4de1bbdf2a79affc/classes.dex" />
     </item>
     <item
@@ -232,7 +232,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="bae728339b768b3ba231cf1bdcb984e36971589e">
+        sha1="171a2682ce5628781be33195d8b7296b2a1efa2e">
         <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9f60381fb14ff1540fcd290075fccf1d37e0ecd6/classes.dex" />
     </item>
     <item
