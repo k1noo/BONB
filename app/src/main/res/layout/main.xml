@@ -55,7 +55,7 @@
         android:id="@+id/playButton"
         android:layout_above="@+id/true_button"
         android:layout_centerHorizontal="true"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
 
     <TextView
         android:text="SCORE: 0"
@@ -76,6 +76,12 @@
         android:id="@+id/restartButton"
         android:visibility="invisible"/>
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/restartButton"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
 

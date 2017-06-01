@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,11 +20,19 @@ import android.util.Log;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 import java.util.HashSet;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     Button trueButton, falseButton, playButton, restartButton;
     TextView FactView, welcomeText, scoreField;
@@ -33,11 +42,28 @@ public class MainActivity extends AppCompatActivity {
     int scoreCounter;
     boolean finishFlag;
     String factVeracity;
+    MenuItem signOutAction;
+
+
+    private GoogleApiClient mGoogleApiClient;
+    private static final int RC_SIGN_IN = 9001;
+    SignInButton signInButton;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+
+        signOutAction = (MenuItem) findViewById(R.id.action_sign_out);
 
         trueButton = (Button) findViewById(R.id.true_button);
         falseButton = (Button) findViewById(R.id.false_button);
@@ -64,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
+                    case R.id.sign_in_button:
+                        signIn();
+                        break;
                     case R.id.playButton:
 
                         playButton.setVisibility(View.INVISIBLE);
@@ -129,11 +158,52 @@ public class MainActivity extends AppCompatActivity {
         playButton.setOnClickListener(onClickAnswerListener);
         welcomeText.setOnClickListener(onClickAnswerListener);
         restartButton.setOnClickListener(onClickAnswerListener);
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        signInButton.setOnClickListener(onClickAnswerListener);
     }
+
+    private void signIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        Log.d("mLog", "handleSignInResult:" + result.isSuccess());
+        if (result.isSuccess()) {
+            GoogleSignInAccount acct = result.getSignInAccount();
+            signInButton.setVisibility(View.INVISIBLE);
+            playButton.setVisibility(View.VISIBLE);
+            signOutAction.setEnabled(true);
+            Toast.makeText(MainActivity.this,"Signed In as: " + acct.getDisplayName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "Sign In Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void signOut() {
+        signOutAction.setEnabled(false);
+        playButton.setVisibility(View.INVISIBLE);
+        signInButton.setVisibility(View.VISIBLE);
+        Toast.makeText(MainActivity.this, "Signed Out", Toast.LENGTH_SHORT).show();
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        // ...
+                    }
+                });
+    }
+
 
     public String showNextFact(Cursor cursor, int factID, TextView textView) {
         Log.d("mLog", "ID = " + cursor.getInt(cursor.getColumnIndex(DBHelper.FACT_ID)) + " Fact: " + cursor.getString(factID)
@@ -159,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        signOutAction = menu.findItem(R.id.action_sign_out);
         return true;
     }
 
@@ -177,11 +248,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, DatabaseScreen.class);
                 startActivity(intent);
                 break;
+            case R.id.action_sign_out:
+                signOut();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private GoogleApiClient client;
 
     public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
@@ -199,10 +272,6 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
 
     @Override
@@ -220,14 +289,15 @@ public class MainActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
