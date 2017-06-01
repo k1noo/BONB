@@ -37,8 +37,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     Button trueButton, falseButton, playButton, restartButton;
     TextView FactView, welcomeText, scoreField;
     DBHelper dbHelper;
-    SQLiteDatabase database;
-    Cursor cursor;
+    UsersDB usersDB;
+    SQLiteDatabase database, usersdatabase;
+    Cursor cursor, usersCursor;
     int scoreCounter;
     boolean finishFlag;
     String factVeracity;
@@ -184,6 +185,34 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             signInButton.setVisibility(View.INVISIBLE);
             playButton.setVisibility(View.VISIBLE);
             signOutAction.setEnabled(true);
+
+            usersDB = new UsersDB(this);
+            usersdatabase = usersDB.getWritableDatabase();
+            usersCursor = usersdatabase.query(UsersDB.TABLE_USERS, null, null, null, null, null, null);
+
+            boolean foundFlag = false;
+
+            if (usersCursor.moveToFirst()) {
+                do {
+                    Log.d("mLog", usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)) +
+                            usersCursor.getInt(usersCursor.getColumnIndex(UsersDB.SCORES)));
+                    if (acct.getEmail().equals(usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)))) {
+                        foundFlag = true;
+                        break;
+                    }
+                } while (usersCursor.moveToNext());
+            } else {
+                Log.d("mLog", "EMPTY USERS DATABASE");
+            }
+            if (!foundFlag) {
+                ContentValues cv = new ContentValues();
+                cv.put(UsersDB.EMAIL, acct.getEmail());
+                cv.put(UsersDB.NAME, acct.getDisplayName());
+                cv.put(UsersDB.SCORES, 0);
+                usersdatabase.insert(UsersDB.TABLE_USERS, null, cv);
+                Log.d("mLog", "Added " + acct.getDisplayName());
+            }
+
             Toast.makeText(MainActivity.this,"Signed In as: " + acct.getDisplayName(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(MainActivity.this, "Sign In Failed!", Toast.LENGTH_SHORT).show();
@@ -219,6 +248,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         trueButton.setVisibility(View.INVISIBLE);
         FactView.setText("GAME ENDED, YOUR SCORE IS: " + scoreCounter);
         restartButton.setVisibility(View.VISIBLE);
+
+        usersDB = new UsersDB(this);
+        usersdatabase = usersDB.getWritableDatabase();
+
+
     }
 
     public void restart() {
