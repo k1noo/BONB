@@ -15,7 +15,7 @@
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_exit"
-        android:orderInCategory="4"
+        android:orderInCategory="5"
         android:title="@string/action_exit"
         app:showAsAction="never"/>
     <item
@@ -23,6 +23,11 @@
         android:orderInCategory="3"
         android:title="SignOut"
         android:enabled="false"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_highscores"
+        android:orderInCategory="4"
+        android:title="Highscores"
         app:showAsAction="never"/>
 
 </menu>

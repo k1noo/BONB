@@ -308,6 +308,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.action_sign_out:
                 signOut();
                 break;
+            case R.id.action_highscores:
+                Intent userListIntent = new Intent(this, UsersListScreen.class);
+                startActivity(userListIntent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
