@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
     private GoogleApiClient mGoogleApiClient;
+    GoogleSignInAccount acct;
     private static final int RC_SIGN_IN = 9001;
     SignInButton signInButton;
 
@@ -181,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d("mLog", "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            GoogleSignInAccount acct = result.getSignInAccount();
+            acct = result.getSignInAccount();
             signInButton.setVisibility(View.INVISIBLE);
             playButton.setVisibility(View.VISIBLE);
             signOutAction.setEnabled(true);
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             if (usersCursor.moveToFirst()) {
                 do {
                     Log.d("mLog", usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)) +
-                            usersCursor.getInt(usersCursor.getColumnIndex(UsersDB.SCORES)));
+                            " " + usersCursor.getInt(usersCursor.getColumnIndex(UsersDB.SCORES)));
                     if (acct.getEmail().equals(usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)))) {
                         foundFlag = true;
                         break;
@@ -251,6 +252,28 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         usersDB = new UsersDB(this);
         usersdatabase = usersDB.getWritableDatabase();
+        usersCursor = usersdatabase.query(UsersDB.TABLE_USERS, null, null, null, null, null, null);
+        if (usersCursor.moveToFirst()) {
+
+            Log.d("mLog", "Searching: " + acct.getEmail());
+
+            do {
+                Log.d("mLog", "Now look at: " + usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)));
+                if (usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)).equals(acct.getEmail()))
+                    break;
+            } while (usersCursor.moveToNext());
+
+            if (usersCursor.getInt(usersCursor.getColumnIndex(UsersDB.SCORES)) < scoreCounter) {
+                ContentValues cv = new ContentValues();
+                cv.put(UsersDB.SCORES, scoreCounter);
+                usersdatabase.update(UsersDB.TABLE_USERS, cv, "email = ?", new String[]{acct.getEmail()});
+            }
+        } else {
+            Log.d("mLog", "DATABASE ERROR!");
+        }
+
+
+
 
 
     }
