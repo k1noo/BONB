@@ -37,8 +37,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     Button trueButton, falseButton, playButton, restartButton;
     TextView FactView, welcomeText, scoreField;
     DBHelper dbHelper;
-    SQLiteDatabase database;
-    Cursor cursor;
+    UsersDB usersDB;
+    SQLiteDatabase database, usersdatabase;
+    Cursor cursor, usersCursor;
     int scoreCounter;
     boolean finishFlag;
     String factVeracity;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
     private GoogleApiClient mGoogleApiClient;
+    GoogleSignInAccount acct;
     private static final int RC_SIGN_IN = 9001;
     SignInButton signInButton;
 
@@ -180,10 +182,38 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d("mLog", "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            GoogleSignInAccount acct = result.getSignInAccount();
+            acct = result.getSignInAccount();
             signInButton.setVisibility(View.INVISIBLE);
             playButton.setVisibility(View.VISIBLE);
             signOutAction.setEnabled(true);
+
+            usersDB = new UsersDB(this);
+            usersdatabase = usersDB.getWritableDatabase();
+            usersCursor = usersdatabase.query(UsersDB.TABLE_USERS, null, null, null, null, null, null);
+
+            boolean foundFlag = false;
+
+            if (usersCursor.moveToFirst()) {
+                do {
+                    Log.d("mLog", usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)) +
+                            " " + usersCursor.getInt(usersCursor.getColumnIndex(UsersDB.SCORES)));
+                    if (acct.getEmail().equals(usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)))) {
+                        foundFlag = true;
+                        break;
+                    }
+                } while (usersCursor.moveToNext());
+            } else {
+                Log.d("mLog", "EMPTY USERS DATABASE");
+            }
+            if (!foundFlag) {
+                ContentValues cv = new ContentValues();
+                cv.put(UsersDB.EMAIL, acct.getEmail());
+                cv.put(UsersDB.NAME, acct.getDisplayName());
+                cv.put(UsersDB.SCORES, 0);
+                usersdatabase.insert(UsersDB.TABLE_USERS, null, cv);
+                Log.d("mLog", "Added " + acct.getDisplayName());
+            }
+
             Toast.makeText(MainActivity.this,"Signed In as: " + acct.getDisplayName(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(MainActivity.this, "Sign In Failed!", Toast.LENGTH_SHORT).show();
@@ -219,6 +249,33 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         trueButton.setVisibility(View.INVISIBLE);
         FactView.setText("GAME ENDED, YOUR SCORE IS: " + scoreCounter);
         restartButton.setVisibility(View.VISIBLE);
+
+        usersDB = new UsersDB(this);
+        usersdatabase = usersDB.getWritableDatabase();
+        usersCursor = usersdatabase.query(UsersDB.TABLE_USERS, null, null, null, null, null, null);
+        if (usersCursor.moveToFirst()) {
+
+            Log.d("mLog", "Searching: " + acct.getEmail());
+
+            do {
+                Log.d("mLog", "Now look at: " + usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)));
+                if (usersCursor.getString(usersCursor.getColumnIndex(UsersDB.EMAIL)).equals(acct.getEmail()))
+                    break;
+            } while (usersCursor.moveToNext());
+
+            if (usersCursor.getInt(usersCursor.getColumnIndex(UsersDB.SCORES)) < scoreCounter) {
+                ContentValues cv = new ContentValues();
+                cv.put(UsersDB.SCORES, scoreCounter);
+                usersdatabase.update(UsersDB.TABLE_USERS, cv, "email = ?", new String[]{acct.getEmail()});
+            }
+        } else {
+            Log.d("mLog", "DATABASE ERROR!");
+        }
+
+
+
+
+
     }
 
     public void restart() {
