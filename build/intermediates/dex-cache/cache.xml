@@ -84,6 +84,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/kirillbojko/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_8529948fe88d2569c3497c4cc158e70ad6edb422/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -657,6 +666,15 @@
         revision="25.0.2"
         sha1="cef85cfc7df40e29fbea58844dd4c1e7d0b15542">
         <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-9.8.0_73480c2b7ab43cd2bc42f74b7ac9ce8935d22d41/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kirillbojko/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.0/5a11f020cce2d11eb71ba916700600e18c4547e7/okhttp-3.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="/Users/kirillbojko/AndroidStudioProjects/BONB2/BONB/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.8.0_91cc248a50de019ad3496988f1ca67e5a3be953d/classes.dex" />
     </item>
     <item
         is-multidex="true"

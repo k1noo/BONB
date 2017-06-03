@@ -241,11 +241,13 @@
     <orderEntry type="library" exported="" name="play-services-iid-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-9.8.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="rules-0.5" level="project" />
+    <orderEntry type="library" exported="" name="okio-1.13.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-auth-base-9.8.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javax.inject-1" level="project" />
     <orderEntry type="library" exported="" name="firebase-auth-common-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-analytics-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-basement-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-3.8.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-auth-module-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-clearcut-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-safetynet-9.8.0" level="project" />
