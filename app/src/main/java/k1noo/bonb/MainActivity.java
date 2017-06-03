@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     SQLiteDatabase database, usersdatabase;
     Cursor cursor, usersCursor;
     int scoreCounter;
-    boolean finishFlag;
+    boolean finishFlag, emptyFlag;
     String factVeracity;
     MenuItem signOutAction;
 
@@ -78,11 +78,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         dbHelper = new DBHelper(this);
         database = dbHelper.getReadableDatabase();
+        emptyFlag = false;
         cursor = database.query(DBHelper.TABLE_FACTS, null, null, null, null, null, null);
         if (!cursor.moveToFirst()) {
             FactView.setText("EMPTY DATABASE!");
+            FactView.setVisibility(View.VISIBLE);
+            emptyFlag = true;
         }
 
+        welcomeText.setText("WELCOME TO BONB\nSign In to Play");
         scoreCounter = 0;
         finishFlag = false;
         factVeracity = "false";
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.sign_in_button:
+                        welcomeText.setText("WELCOME TO BONB\nTap PLAY to start");
                         signIn();
                         break;
                     case R.id.playButton:
@@ -184,7 +189,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         if (result.isSuccess()) {
             acct = result.getSignInAccount();
             signInButton.setVisibility(View.INVISIBLE);
-            playButton.setVisibility(View.VISIBLE);
+            if (!emptyFlag) {
+                playButton.setVisibility(View.VISIBLE);
+            }
             signOutAction.setEnabled(true);
 
             usersDB = new UsersDB(this);
@@ -343,6 +350,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         cursor = database.query(DBHelper.TABLE_FACTS, null, null, null, null, null, null);
         if (!cursor.moveToFirst()) {
             FactView.setText("EMPTY DATABASE!");
+        } else {
+            emptyFlag = false;
         }
     }
 
